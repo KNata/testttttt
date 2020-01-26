@@ -1,0 +1,54 @@
+import groovy.sql.Sql
+import org.hsqldb.jdbcDriver
+
+class Customer {
+    def name
+    def country
+    
+    Customer(def aName, def aCountry) {
+        name = aName
+        country = aCountry
+    }
+    
+    def getName() {
+        return name
+    }
+    
+    void setName(def aName) {
+        name = aName
+    }
+    
+    def getCountry() {
+        return country
+    }
+    
+    void setCountry(def aCountry) {
+        country = aCountry
+    }
+}
+
+def url = 'jdbc:mysql://localhost/cloudshop'
+def user = 'root'
+def password = ''
+def driver = 'org.hsqldb.jdbcDriver'
+def sql = Sql.newInstance(url, user, password, driver)
+
+def customerName = ''
+def customerCountry = ''
+
+def customerList = []
+sql.execute('UPDATE Customer SET country="GB" WHERE country IS NULL')
+sql.query('SELECT * FROM Customer') { resultSet ->
+  while (resultSet.next()) {
+        def id = resultSet.getString('id')
+        customerName = resultSet.getString('name')
+        customerCountry = resultSet.getString('country')
+        
+        Customer customer = new Customer(customerName, customerCountry)
+        customerList.add(customer)
+      }
+  }
+  
+  for(Customer cust : customerList) {
+    println cust.getName() + " " + cust.getCountry()
+}
