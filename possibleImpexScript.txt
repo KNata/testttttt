@@ -1,0 +1,2 @@
+UPDATE address;PK[unique=true];country[default='GB']
+#% impex.exportItemsFlexibleSearch(""select {PK}, {country} from {Customer} where {country} IS NULL"");
