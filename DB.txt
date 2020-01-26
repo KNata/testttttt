@@ -1,0 +1,23 @@
+create database if not exists cloudshop;
+use cloudshop;
+drop table if exists Customer;
+
+create table Customer (
+id int not null,
+name varchar(40) not null,
+country varchar(1000)
+);
+
+insert into Customer values(1, 'Natalia', 'Ukraine');
+insert into Customer values(2, 'Oleksii', 'Scotland');
+insert into Customer values(3, 'Marianna', null);
+insert into Customer values(4, 'Andrii', null);
+
+select * from Customer;
+select id, country from Customer where country IS NULL;
+-- update Customer set country='GB' where country IS NULL;
+-- select * from Customer;
+
+
+===
+
