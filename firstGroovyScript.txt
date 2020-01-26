@@ -1,0 +1,49 @@
+class Customer {
+    def name
+    def country
+    
+    Customer(def aName, def aCountry) {
+        name = aName
+        country = aCountry
+    }
+    
+    def getName() {
+        return name
+    }
+    
+    void setName(def aName) {
+        name = aName
+    }
+    
+    def getCountry() {
+        return country
+    }
+    
+    void setCountry(def aCountry) {
+        country = aCountry
+    }
+}
+
+Customer customer = new Customer("Natalia", "GB");
+println customer.getName();
+
+Customer customer1 = new Customer("Oleksii", null);
+println customer1.getName();
+Customer customer2 = new Customer("Maria", "UK");
+println customer2.getName();
+println ""
+println ""
+
+def customerList = []
+customerList.add(customer)
+customerList.add(customer1)
+customerList.add(customer2)
+for(Customer cust : customerList) {
+    if (cust.getCountry() == null) {
+        cust.setCountry("GB")
+    }
+}
+
+for(Customer cust : customerList) {
+    println cust.getName() + " " + cust.getCountry()
+}
